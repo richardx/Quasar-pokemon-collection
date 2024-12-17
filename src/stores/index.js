@@ -1,20 +1,34 @@
-import { defineStore } from '#q-app/wrappers'
-import { createPinia } from 'pinia'
+import { createPinia, defineStore } from 'pinia'
+import { ref } from 'vue'
 
-/*
- * If not building with SSR mode, you can
- * directly export the Store instantiation;
- *
- * The function below can be async too; either use
- * async/await or return a Promise which resolves
- * with the Store instance.
- */
+// Definér din brugerstore
+export const useUserStore = defineStore('user', () => {
+  const user = ref(null)
+  const isAuthReady = ref(false)
+  const isDarkMode = ref(
+    JSON.parse(localStorage.getItem('isDarkMode')) !== null
+      ? JSON.parse(localStorage.getItem('isDarkMode'))
+      : true, // Standard til dark mode aktiv
+  )
 
-export default defineStore((/* { ssrContext } */) => {
-  const pinia = createPinia()
+  const setUser = (newUser) => {
+    user.value = newUser
+  }
 
-  // You can add Pinia plugins here
-  // pinia.use(SomePiniaPlugin)
+  const toggleDarkMode = () => {
+    isDarkMode.value = !isDarkMode.value
+    localStorage.setItem('isDarkMode', JSON.stringify(isDarkMode.value))
+  }
 
-  return pinia
+  return {
+    user,
+    isAuthReady,
+    isDarkMode,
+    setUser,
+    toggleDarkMode,
+  }
 })
+
+// Opret en enkelt Pinia-instans
+const pinia = createPinia()
+export default pinia

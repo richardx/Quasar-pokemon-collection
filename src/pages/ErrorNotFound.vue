@@ -1,27 +1,34 @@
 <template>
-  <div class="fullscreen bg-blue text-white text-center q-pa-md flex flex-center">
-    <div>
-      <div style="font-size: 30vh">
-        404
-      </div>
-
-      <div class="text-h2" style="opacity:.4">
-        Oops. Nothing here...
-      </div>
-
-      <q-btn
-        class="q-mt-xl"
-        color="white"
-        text-color="blue"
-        unelevated
-        to="/"
-        label="Go Home"
-        no-caps
-      />
-    </div>
+  <div class="error-not-found">
+    <h1>404 - Page Not Found</h1>
+    <p>Sorry, the page you are looking for does not exist.</p>
+    <router-link to="/">Go back to Home</router-link>
   </div>
 </template>
 
-<script setup>
-//
+<script>
+export default {
+  name: 'ErrorNotFound',
+}
 </script>
+
+<style scoped>
+.error-not-found {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.error-not-found h1 {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.error-not-found p {
+  margin-bottom: 20px;
+}
+
+.error-not-found a {
+  color: #42b983;
+  text-decoration: none;
+}
+</style>

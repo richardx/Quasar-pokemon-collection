@@ -1,0 +1,6 @@
+{
+  "appId": "com.madsrichard.quasar",
+  "appName": "Quasar",
+  "webDir": "dist/spa",
+  "bundledWebRuntime": false
+}
